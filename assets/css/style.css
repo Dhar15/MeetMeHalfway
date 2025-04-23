@@ -1,1 +1,102 @@
+* {
+      box-sizing: border-box;
+    }
 
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #5a84f8, #ffffff);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2em 1em;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 1em;
+    }
+
+    /* Input Card */
+    .input-card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(8px);
+      padding: 1.5em;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1em;
+      width: 100%;
+      max-width: 700px;
+    }
+
+    input {
+      padding: 0.75em;
+      margin: 0.5em;
+      width: 500px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      transition: border 0.2s ease-in-out;
+    }
+
+    input:focus {
+      border: 1px solid #007BFF;
+      outline: none;
+    }    
+
+    button {
+      padding: 0.8em 1.4em;
+      margin: 0.5em;
+      font-size: 1em;
+      border: none;
+      background-color: #007BFF;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #midpointAddress {
+      margin-top: 0.5em;
+      font-size: 1.1em;
+      font-weight: 500;
+      color: #333;
+      text-align: center;
+    }
+
+    #map {
+      width: 100%;
+      height: 70vh;
+      max-width: 1000px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      margin-top: 1.5em;
+    }
+
+    #cafesBtn:disabled {
+        background-color: gray;
+        cursor: not-allowed;
+      }
+
+    @media (max-width: 600px) {
+      input {
+        width: 90%;
+      }
+      .input-card {
+        flex-direction: column;
+      }
+      button {
+        width: 90%;
+      }
+    }

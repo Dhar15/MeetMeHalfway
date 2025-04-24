@@ -6,6 +6,7 @@
   <title>Meet Me Halfway?</title>
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw6PmeGSyTMgy5xdc8nOvgr2ooicB0qg8&libraries=places&callback=initMap" 
     async
@@ -39,6 +40,10 @@
   <div id="midpointAddress"></div>
   <div id="travelInfo" style="margin-top: 20px; font-family: sans-serif;"></div>
   <div id="map"></div>
+  
+  <button id="refreshBtn" class="refresh-btn" onclick="refreshPage()">
+    <i class="fas fa-sync-alt"></i> <!-- Font Awesome refresh icon -->
+  </button>
 
   <script src="assets/js/main.js"></script>
 

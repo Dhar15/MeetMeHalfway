@@ -4,6 +4,7 @@ let placesService;
 let autocompleteA, autocompleteB;
 let midpoint; // ⬅️ Store midpoint globally
 let markers = [];
+let midpointMarkers = [];
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -104,6 +105,32 @@ function findMidpoint() {
             window.open(mapsUrl, "_blank");
           });
 
+          // ✅ Show travel time from both locations
+          const service = new google.maps.DistanceMatrixService();
+          service.getDistanceMatrix(
+            {
+              origins: [locA, locB],
+              destinations: [midpoint],
+              travelMode: google.maps.TravelMode.DRIVING,
+              unitSystem: google.maps.UnitSystem.METRIC
+            },
+            (response, status) => {
+              if (status !== "OK") {
+                console.error("Distance Matrix error:", status);
+                return;
+              }
+
+              const output = `
+                <h3 class="travelTime"> Travel Time to Midpoint:</h3>
+                <ul>
+                  <li>From Location A: ${response.rows[0].elements[0].duration.text} (${response.rows[0].elements[0].distance.text})</li>
+                  <li>From Location B: ${response.rows[1].elements[0].duration.text} (${response.rows[1].elements[0].distance.text})</li>
+                </ul>
+              `;
+              document.getElementById("travelInfo").innerHTML = output;
+            }
+          );
+
          // Enable the "Find Cafes" button
          const findCafesBtn = document.getElementById("cafesBtn");
          findCafesBtn.disabled = false; // Enable the button
@@ -122,7 +149,9 @@ function findMidpoint() {
 }
 
 function findCafes() {
-  console.log(midpoint);
+  //console.log(midpoint);
+
+  clearMidpointMarkers();
 
   if (!midpoint || !midpoint.lat || !midpoint.lng) {
       alert("Midpoint is invalid or not set.");
@@ -132,7 +161,7 @@ function findCafes() {
   // Extract lat and lng from google.maps.LatLng object
   const lat = midpoint.lat();
   const lng = midpoint.lng();  
-  console.log("Midpoint coordinates:", lat, lng);
+  //console.log("Midpoint coordinates:", lat, lng);
 
   // Check if placesService is initialized
   if (!placesService) {
@@ -140,21 +169,23 @@ function findCafes() {
     alert("Google Places service is not available. Please refresh the page.");
     return;
   }
+    
+  const radiusKm = parseInt(document.getElementById("radiusSelect").value);
 
   const request = {
     location: midpoint,
-    radius: 1000,
-    type: "restaurant"
+    radius: radiusKm,
+    type: "restaurant" 
   };
 
-  console.log("Request object:", request); // Check the request parameters
+  console.log(request);
 
   try {
-    console.log("Calling nearbySearch...");
+    // console.log("Calling nearbySearch...");
     placesService.nearbySearch(request, (results, status) => {
-      console.log("Search callback received with status:", status);
+      // console.log("Search callback received with status:", status);
       if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-        console.log("Cafes found:", results);
+        // console.log("Cafes found:", results);
 
         results.forEach(place => {
           const marker = new google.maps.Marker({
@@ -164,6 +195,7 @@ function findCafes() {
             icon: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
           });
           markers.push(marker);
+          midpointMarkers.push(marker);
 
           marker.setTitle(`${place.name} - ${place.vicinity || ''}`);
         
@@ -191,6 +223,14 @@ function clearMarkers() {
     markers[i].setMap(null); // Remove each marker from the map
   }
   markers = []; // Clear the array of markers
+}
+
+// Function to clear only midpoint markers from the map
+function clearMidpointMarkers() {
+  for (let i = 0; i < midpointMarkers.length; i++) {
+    midpointMarkers[i].setMap(null); // Remove each marker from the map
+  }
+  midpointMarkers = []; // Clear the array of markers
 }
 
 window.initMap = initMap;

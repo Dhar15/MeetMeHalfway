@@ -21,9 +21,23 @@
   <div>
     <button onclick="findMidpoint()">Find Mid Point</button>
     <button id="cafesBtn" onclick="findCafes()" disabled>Find Cafes Nearby</button>
+
+    <div class="radius-select-container">
+      <label for="radiusSelect">🔍 Search Radius:</label>
+      <select id="radiusSelect">
+        <option value="500">0.5 km</option>
+        <option value="1000">1 km</option>
+        <option value="2000" selected>2 km (default)</option>
+        <option value="3000">3 km</option>
+        <option value="5000">5 km</option>
+        <option value="10000">10 km</option>
+      </select>
+    </div>
+
   </div>
 
   <div id="midpointAddress"></div>
+  <div id="travelInfo" style="margin-top: 20px; font-family: sans-serif;"></div>
   <div id="map"></div>
 
   <script src="assets/js/main.js"></script>

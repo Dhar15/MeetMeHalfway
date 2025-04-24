@@ -234,7 +234,7 @@ function clearMidpointMarkers() {
 }
 
 function refreshPage() {
-  location.reload(); // This will reload the page when the button is clicked
+  window.location.reload(); // This will reload the page when the button is clicked
 }
 
 window.initMap = initMap;

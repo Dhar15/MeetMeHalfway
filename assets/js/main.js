@@ -233,5 +233,9 @@ function clearMidpointMarkers() {
   midpointMarkers = []; // Clear the array of markers
 }
 
+function refreshPage() {
+  location.reload(); // This will reload the page when the button is clicked
+}
+
 window.initMap = initMap;
 

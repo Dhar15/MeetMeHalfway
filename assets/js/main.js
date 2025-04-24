@@ -220,21 +220,21 @@ function findCafes() {
 // Function to clear all markers from the map
 function clearMarkers() {
   for (let i = 0; i < markers.length; i++) {
-    markers[i].setMap(null); // Remove each marker from the map
+    markers[i].setMap(null); 
   }
-  markers = []; // Clear the array of markers
+  markers = [];
 }
 
 // Function to clear only midpoint markers from the map
 function clearMidpointMarkers() {
   for (let i = 0; i < midpointMarkers.length; i++) {
-    midpointMarkers[i].setMap(null); // Remove each marker from the map
+    midpointMarkers[i].setMap(null); 
   }
-  midpointMarkers = []; // Clear the array of markers
+  midpointMarkers = []; 
 }
 
 function refreshPage() {
-  window.location.reload(); // This will reload the page when the button is clicked
+  location.reload();
 }
 
 window.initMap = initMap;

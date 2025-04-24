@@ -222,19 +222,15 @@ function clearMarkers() {
   for (let i = 0; i < markers.length; i++) {
     markers[i].setMap(null); 
   }
-  markers = [];
+  markers = []; 
 }
 
 // Function to clear only midpoint markers from the map
 function clearMidpointMarkers() {
   for (let i = 0; i < midpointMarkers.length; i++) {
-    midpointMarkers[i].setMap(null); 
+    midpointMarkers[i].setMap(null);
   }
   midpointMarkers = []; 
-}
-
-function refreshPage() {
-  location.reload();
 }
 
 window.initMap = initMap;

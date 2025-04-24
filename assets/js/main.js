@@ -137,12 +137,12 @@ function findMidpoint() {
          findCafesBtn.style.backgroundColor = "#4CAF50"; // Set to green or any color
          findCafesBtn.style.cursor = "pointer"; // Allow clicking
         } else {
-            alert("Please enter a valid address for Location B" + statusB);
+            alert("Please enter a valid address for Location B  " + statusB);
             return;
         }
       });
     } else {
-        alert("Please enter a valid address for Location A" + statusA);
+        alert("Please enter a valid address for Location A  " + statusA);
         return;
     }
   });
